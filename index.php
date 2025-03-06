@@ -13,25 +13,31 @@
 <body>
     <h1 class="text-center p-3">Prueba de conexion</h1>
     <div class="container-fluid row">
-        <form class="col-4 p-4">
+        <form class="col-4 p-4" method="POST">
+            <h3 class="text-center">Registro de usuarios</h3>
+            <?php
+            include "model/conn.php";
+            include "controller/new_user.php";
+            include "controller/delete_user.php"
+            ?>
             <div class="mb-3">
-                <label for="formNombre" class="form-label">Escribe tu nombre</label>
-                <input type="text" class="form-control" id="formNombre" aria-describedby="nombrePersona">
+                <label for="formNombreLabel" class="form-label">Escribe tu nombre</label>
+                <input type="text" class="form-control" name="nombre">
             </div>
             <div class="mb-3">
-                <label for="formApellido" class="form-label">Escribe tu apellido</label>
-                <input type="text" class="form-control" id="formApellido" aria-describedby="apellidoPersona">
+                <label for="formApellidoLabel" class="form-label">Escribe tu apellido</label>
+                <input type="text" class="form-control" name="apellido">
             </div>
             <div class="mb-3">
-                <label for="formCedula" class="form-label">Escribe tu cédula</label>
-                <input type="text" class="form-control" id="formCedula" aria-describedby="cedulaPersona">
+                <label for="formCedulaLabel" class="form-label">Escribe tu cédula</label>
+                <input type="text" class="form-control" name="cedula">
             </div>
             <div class="mb-3">
-                <label for="formEmail" class="form-label">Coloca tu correo</label>
-                <input type="email" class="form-control" id="formEmail" aria-describedby="emailPersona">
+                <label for="formEmailLabel" class="form-label">Coloca tu correo</label>
+                <input type="email" class="form-control" name="email">
             </div>
 
-            <button type="submit" class="btn btn-warning">Registrar</button>
+            <button type="submit" class="btn btn-warning" name="btnregister" value="ok">Registrar</button>
         </form>
 
         <div class="col-8 p-4">
@@ -60,8 +66,8 @@
                         <td><?= $datos->cedula ?></td>
                         <td><?= $datos->email ?></td>
                         <td>
-                           <a href="" class="btn btn-small btn-warning"><i class="fa-solid fa-pen"></i></a> 
-                           <a href="" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a> 
+                           <a href="edit_index.php?id=<?= $datos->id ?>" class="btn btn-small btn-warning"><i class="fa-solid fa-pen"></i></a> 
+                           <a onclick="return confirm('Deseas borrar este usuario?')" href="index.php?id=<?= $datos->id ?>" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a> 
                         </td>
                     </tr>
 
